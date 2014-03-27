@@ -1,0 +1,42 @@
+/run/verbose 2
+/vis/verbose 0
+/vis/scene/create
+/tracking/storeTrajectory 1
+/vis/scene/endOfEventAction accumulate
+/vis/open OGL
+/vis/sceneHandler/create OGL
+/vis/sceneHandler/attach
+/vis/viewer/create ! ! 600
+/vis/viewer/refresh
+/vis/scene/notifyHandlers
+/vis/viewer/set/viewpointThetaPhi 130. 40.
+/vis/viewer/refresh
+/vis/viewer/set/style surface
+/vis/viewer/refresh
+/tracking/storeTrajectory 1
+/vis/viewer/set/autoRefresh true
+/vis/viewer/refresh
+/vis/verbose warnings
+/gun/particle pi-
+/gun/energy 3 MeV
+/gun/direction 0. 0. 1
+/gun/position 0 0 0
+/control/execute macros/gui.mac
+/gui/addMenu g4file G4File
+/gui/addButton g4file Continue continue
+/gui/addButton g4file Exit "exit"
+/gui/addMenu viewer Viewer
+/gui/addButton viewer "Qt viewer" "/control/execute macros/vis.mac"
+/gui/addButton viewer "RayTracer" "/control/execute macros/RayTracer.mac"
+/gui/addButton viewer "Set style solid" "/vis/viewer/set/style solid"
+/gui/addButton viewer "Set style wire" "/vis/viewer/set/style wire"
+/gui/addButton viewer "Update viewer" "/vis/viewer/update"
+/gui/addButton viewer "Update scene" "/vis/scene/notifyHandlers"
+/gui/addButton viewer "Reset scene" "/control/execute macros/vis.mac"
+/gui/addButton viewer "Reset cutting plane" "/vis/viewer/clearCutawayPlanes"
+/gui/addButton viewer "Set View Side" "/vis/viewer/addCutawayPlane -500 0 0 cm 1 0 0"
+/gui/addButton viewer "Set View Back" "/vis/viewer/addCutawayPlane 0 0 -500 cm 0 0 1"
+/gui/addButton viewer "Set View Slice Side" "/vis/viewer/addCutawayPlane 0 0 0 cm 1 0 0"
+/gui/addButton viewer "Set View Slice Top" "/vis/viewer/addCutawayPlane 0 0 0 cm 0 -1 0"
+/gui/addMenu movie Movie
+/gui/addButton movie "RayTracer movie" "/control/execute macros/RayTracer_movie.mac"
